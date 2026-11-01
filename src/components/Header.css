@@ -1,0 +1,206 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+.site-header {
+  --header-height: 4rem;
+  --menu-icon-width: 1.25rem;
+  --menu-icon-gap: 0.375rem; /* écart entre les barres du bouton menu */
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Le logo fixe la hauteur de la barre. */
+.logo {
+  display: flex;
+  align-items: center;
+  min-height: var(--header-height);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.logo-accent {
+  color: var(--color-primary);
+}
+
+.menu-toggle {
+  display: grid;
+  place-items: center;
+  width: var(--tap-target);
+  height: var(--tap-target);
+  padding: 0;
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* Trois barres qui forment une croix quand le menu est ouvert. */
+.menu-toggle-icon,
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+  display: block;
+  width: var(--menu-icon-width);
+  height: var(--border-width-strong);
+  background-color: var(--color-text);
+  border-radius: var(--radius-pill);
+  transition:
+    transform var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.menu-toggle-icon {
+  position: relative;
+}
+
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.menu-toggle-icon::before {
+  top: calc(var(--menu-icon-gap) * -1);
+}
+
+.menu-toggle-icon::after {
+  top: var(--menu-icon-gap);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle-icon {
+  background-color: transparent;
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle-icon::before {
+  transform: translateY(var(--menu-icon-gap)) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle-icon::after {
+  transform: translateY(calc(var(--menu-icon-gap) * -1)) rotate(-45deg);
+}
+
+/* Sous 768 px, le menu n'apparaît que lorsque le bouton est ouvert. */
+.main-nav {
+  display: none;
+  flex-basis: 100%;
+  padding-bottom: var(--space-sm);
+}
+
+.menu-toggle[aria-expanded='true'] + .main-nav {
+  display: block;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  min-height: var(--tap-target);
+  padding: var(--space-xs) var(--space-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-left: var(--indicator-width) solid transparent;
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-raised);
+}
+
+/* NavLink pose aria-current="page" sur le lien de la page active. */
+.nav-link[aria-current='page'] {
+  color: var(--color-text);
+  background-color: var(--color-surface-raised);
+  border-left-color: var(--color-primary);
+}
+
+/* Le bouton de déconnexion ressemble aux liens du menu. */
+.nav-button {
+  background-color: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.nav-user {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.nav-count {
+  min-width: var(--space-lg);
+  padding-inline: var(--space-xs);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-on-primary);
+  background-color: var(--color-primary-strong);
+  border-radius: var(--radius-pill);
+}
+
+@media (min-width: 768px) {
+  /* Le menu est toujours visible : plus besoin du bouton. */
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    display: block;
+    flex-basis: auto;
+    padding-bottom: 0;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: var(--space-xs);
+  }
+
+  .nav-link {
+    padding-inline: var(--space-sm);
+    border-left: 0;
+    border-bottom: var(--indicator-width) solid transparent;
+    border-radius: 0;
+  }
+
+  .nav-link:hover,
+  .nav-link[aria-current='page'] {
+    background-color: transparent;
+  }
+
+  .nav-link[aria-current='page'] {
+    border-bottom-color: var(--color-primary);
+  }
+}

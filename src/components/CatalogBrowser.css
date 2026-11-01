@@ -1,0 +1,24 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Mobile : recherche sur toute la largeur, genre et tri côte à côte en dessous. */
+.catalog-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.catalog-filters > .field:first-child {
+  grid-column: 1 / -1;
+}
+
+/* Tablette et plus : les trois filtres sur une seule ligne. */
+@media (min-width: 768px) {
+  .catalog-filters {
+    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+    align-items: end;
+  }
+
+  .catalog-filters > .field:first-child {
+    grid-column: auto;
+  }
+}

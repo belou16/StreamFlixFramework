@@ -1,0 +1,79 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Système de design : couleurs, espacements, typographie et effets partagés par toute l'application.
+   Les dimensions propres à un seul composant sont déclarées dans le CSS de ce composant. */
+
+:root {
+  color-scheme: dark;
+
+  /* Couleurs */
+  --color-primary: #ef5350;
+  --color-primary-strong: #c62828;
+  --color-primary-stronger: #a51d1d;
+  --color-star: #f5b942;
+  --color-background: #0e0f12;
+  --color-surface: #171920;
+  --color-surface-raised: #20232c;
+  --color-border: #2c303b;
+  --color-border-strong: #454b5a;
+  --color-text: #f2f3f5;
+  --color-text-muted: #a3a8b5;
+  --color-on-primary: #ffffff;
+  --color-error: #ff7b7b;
+  --color-success: #5fd39a;
+  --color-focus: #ffffff;
+  --color-shadow: rgb(0 0 0 / 0.45);
+
+  /* Espacements */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Typographie */
+  --font-family-base:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-display: 6rem;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+  --line-height-none: 1;
+  --line-height-tight: 1.2;
+  --line-height-base: 1.6;
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-wide: 0.08em;
+
+  /* Bordures, rayons et focus */
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --indicator-width: 3px;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-pill: 999px;
+  --focus-ring: 3px solid var(--color-focus);
+  --focus-ring-offset: 2px;
+
+  /* Mise en page */
+  --container-max-width: 75rem;
+  --form-max-width: 28rem;
+  --text-max-width: 70ch;
+  --tap-target: 2.75rem; /* zone cliquable minimale au doigt */
+  --poster-ratio: 2 / 3;
+
+  /* Effets */
+  --shadow-raised: 0 var(--space-sm) var(--space-lg) var(--color-shadow);
+  --transition-fast: 150ms ease-out;
+  --transition-base: 250ms ease-out;
+  --spin-duration: 800ms;
+}

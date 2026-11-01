@@ -1,0 +1,37 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+.selection-form {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.form-section {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+}
+
+.list-entries {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.form-actions {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  /* Champs à une largeur lisible, boutons à leur largeur naturelle. */
+  .form-section .field {
+    max-width: var(--form-max-width);
+  }
+
+  .form-section > .button,
+  .form-actions {
+    justify-self: start;
+    justify-items: start;
+  }
+}

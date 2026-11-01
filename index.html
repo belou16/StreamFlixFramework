@@ -1,12 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>streamflix-react</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0e0f12" />
+    <!-- Titre de repli : chaque page affiche le sien grâce au composant PageMeta. -->
+    <title>StreamFlix</title>
+
+    <!-- Aperçu affiché quand un lien StreamFlix est partagé sur un réseau social. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="StreamFlix" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="StreamFlix · Trouvez votre prochaine série" />
+    <meta
+      property="og:description"
+      content="Recherchez, filtrez et comparez des centaines de séries, puis constituez votre liste de programmes à voir."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:alt" content="Logo StreamFlix sur fond sombre" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Connexion ouverte en avance vers l'API du catalogue, dont l'adresse vient du .env. -->
+    <link rel="preconnect" href="%VITE_API_BASE_URL%" crossorigin />
   </head>
   <body>
+    <noscript>Activez JavaScript pour utiliser StreamFlix.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

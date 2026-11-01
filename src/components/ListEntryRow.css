@@ -1,0 +1,73 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Mobile : vignette à gauche, titre puis commandes à droite. */
+.list-entry {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  grid-template-areas:
+    'poster info'
+    'poster controls';
+  gap: var(--space-xs) var(--space-md);
+  padding: var(--space-sm);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.list-entry-poster {
+  grid-area: poster;
+}
+
+.list-entry-poster .poster {
+  border-radius: var(--radius-sm);
+}
+
+.list-entry-info {
+  grid-area: info;
+}
+
+.list-entry-title {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-tight);
+}
+
+.list-entry-title a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.list-entry-title a:hover {
+  color: var(--color-primary);
+}
+
+.list-entry-year {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.list-entry-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  grid-area: controls;
+}
+
+/* Champ priorité étroit : il ne contient qu'un ou deux chiffres. */
+.list-entry-controls .input {
+  width: 5rem;
+}
+
+/* Le message d'erreur peut prendre toute la largeur sous le champ. */
+.list-entry-controls .field {
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .list-entry {
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+    grid-template-areas: 'poster info controls';
+    align-items: center;
+  }
+}

@@ -1,0 +1,91 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Mobile : affiche et en-tête côte à côte, puis bouton et résumé sur toute la largeur. */
+.show-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  grid-template-areas:
+    'poster header'
+    'actions actions'
+    'summary summary';
+  gap: var(--space-lg) var(--space-md);
+}
+
+.show-detail-poster {
+  grid-area: poster;
+}
+
+.show-detail-poster .poster {
+  border-radius: var(--radius-lg);
+}
+
+.show-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  grid-area: header;
+}
+
+.show-detail-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  overflow-wrap: anywhere;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-3xs);
+  font-size: var(--font-size-sm);
+}
+
+.fact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.fact dt {
+  color: var(--color-text-muted);
+}
+
+.show-detail-actions {
+  display: grid;
+  gap: var(--space-sm);
+  grid-area: actions;
+}
+
+.show-detail-summary {
+  grid-area: summary;
+  padding-top: var(--space-lg);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.summary {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: var(--text-max-width);
+}
+
+/* Tablette et plus : l'affiche occupe une colonne fixe à gauche. */
+@media (min-width: 768px) {
+  .show-detail {
+    grid-template-columns: 18rem minmax(0, 1fr);
+    grid-template-areas:
+      'poster header'
+      'poster actions'
+      'poster summary';
+    grid-template-rows: auto auto 1fr;
+    column-gap: var(--space-xl);
+  }
+
+  .show-detail-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Bouton et message à leur largeur naturelle. */
+  .show-detail-actions {
+    justify-items: start;
+  }
+}

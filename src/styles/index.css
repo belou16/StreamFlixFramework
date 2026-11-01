@@ -1,0 +1,5 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Styles globaux, chargés une fois par main.tsx. Chaque composant importe ensuite son propre CSS. */
+@import './tokens.css';
+@import './base.css';
+@import './ui.css';

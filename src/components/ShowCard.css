@@ -1,0 +1,87 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Mobile : carte horizontale, affiche à gauche. */
+.show-card {
+  --poster-width: 7rem;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--poster-width) minmax(0, 1fr);
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+
+  /* Les cartes hors écran ne sont mises en page qu'à l'approche : défilement fluide sur mobile. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 10.5rem;
+}
+
+.show-card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-raised);
+  transform: translateY(calc(var(--space-2xs) * -1));
+}
+
+/* Le focus clavier entoure toute la carte. */
+.show-card:focus-within {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.show-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.show-card-title {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-tight);
+}
+
+.show-card-link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* Le lien du titre couvre toute la carte : un seul lien, toute la carte cliquable. */
+.show-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.show-card-link:focus-visible {
+  outline: none;
+}
+
+.show-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs) var(--space-sm);
+  margin-top: auto;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Desktop : carte verticale, affiche au-dessus du texte. */
+@media (min-width: 1025px) {
+  .show-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    contain-intrinsic-size: auto 27rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .show-card:hover {
+    transform: none;
+  }
+}

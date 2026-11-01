@@ -1,0 +1,196 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Base, mise en page commune et utilitaires. Mobile d'abord : les media queries élargissent. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Le pied de page reste en bas, même sur une page courte. */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+code {
+  font-family: var(--font-family-mono);
+  overflow-wrap: anywhere;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Utilitaires */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* Caché à l'écran, mais lu par les lecteurs d'écran. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Lien d'évitement : invisible, il apparaît au premier appui sur Tab. */
+.skip-link {
+  position: absolute;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: 20;
+  padding: var(--space-xs) var(--space-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-primary);
+  background-color: var(--color-primary-strong);
+  border-radius: var(--radius-md);
+  transform: translateY(-200%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Mise en page commune */
+
+.page {
+  padding-block: var(--space-lg) var(--space-2xl);
+}
+
+.page-title {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.page-intro {
+  max-width: var(--text-max-width);
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-muted);
+}
+
+.section-title {
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.results-count {
+  min-height: calc(var(--font-size-sm) * var(--line-height-base));
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--tap-target);
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+  color: var(--color-text);
+}
+
+.site-footer {
+  padding-block: var(--space-lg);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.site-footer a {
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-xl);
+  }
+
+  .page {
+    padding-top: var(--space-xl);
+  }
+
+  .page-title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* Préférence système : animations réduites. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

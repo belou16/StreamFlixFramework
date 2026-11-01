@@ -1,0 +1,280 @@
+/* IA : Claude Code, modèle Claude Opus 5.5 (Anthropic), 15/10/2026. Voir README, « Utilisation de l'IA générative ». */
+/* Éléments d'interface partagés : boutons, champs, messages, étiquettes, notes, affiches, états. */
+
+/* Boutons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-height: var(--tap-target);
+  padding: var(--space-xs) var(--space-lg);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.button-primary {
+  color: var(--color-on-primary);
+  background-color: var(--color-primary-strong);
+}
+
+.button-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-stronger);
+}
+
+.button-secondary {
+  color: var(--color-text);
+  background-color: transparent;
+  border-color: var(--color-border-strong);
+}
+
+.button-secondary:hover:not(:disabled) {
+  background-color: var(--color-surface-raised);
+  border-color: var(--color-text-muted);
+}
+
+.button-block {
+  width: 100%;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Envoi en cours : petit indicateur tournant devant le libellé. */
+.button.is-loading {
+  cursor: progress;
+}
+
+.button.is-loading::before {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  border: var(--border-width-strong) solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin var(--spin-duration) linear infinite;
+}
+
+@media (min-width: 768px) {
+  .button-block {
+    width: auto;
+  }
+}
+
+/* Champs de formulaire */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.input,
+.select {
+  width: 100%;
+  min-height: var(--tap-target);
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+
+.input:hover,
+.select:hover {
+  border-color: var(--color-text-muted);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+/* Champ en erreur : bordure plus épaisse et pointillée, visible même sans percevoir la couleur. */
+.input[aria-invalid='true'] {
+  border: var(--border-width-strong) dashed var(--color-error);
+}
+
+.field-error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+.form-hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+/* Messages de retour : en cours, succès, erreur */
+
+.feedback {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-surface);
+  border-left: var(--indicator-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.feedback:empty {
+  display: none;
+}
+
+.feedback[data-status='success'] {
+  border-left-color: var(--color-success);
+}
+
+.feedback[data-status='error'] {
+  color: var(--color-error);
+  border-left-color: var(--color-error);
+}
+
+/* Affiches : toujours au même format, même sans image. */
+
+.poster {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--poster-ratio);
+  object-fit: cover;
+  background-color: var(--color-surface-raised);
+}
+
+/* Étiquettes de genre */
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: var(--space-3xs) var(--space-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+}
+
+/* Note en étoiles */
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.rating-stars {
+  color: var(--color-star);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.rating-value {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.rating-missing {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* États : chargement, vide, erreur, introuvable */
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  background-color: var(--color-surface);
+  border: var(--border-width) dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+}
+
+/* Pastille ronde dont le symbole dépend de l'état. */
+.state-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-muted);
+  border: var(--border-width-strong) solid currentColor;
+  border-radius: 50%;
+}
+
+.state-empty .state-icon::before {
+  content: '∅';
+}
+
+.state-error .state-icon::before {
+  content: '!';
+}
+
+.state-not-found .state-icon::before {
+  content: '?';
+}
+
+.state-error .state-icon {
+  color: var(--color-error);
+}
+
+.state-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.state-message {
+  max-width: var(--text-max-width);
+  color: var(--color-text-muted);
+}
+
+.state .button {
+  margin-top: var(--space-xs);
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: var(--indicator-width) solid var(--color-border-strong);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin var(--spin-duration) linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
